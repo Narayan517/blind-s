@@ -11,14 +11,17 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            height: 100vh;
             margin: 0;
             background: linear-gradient(to right, #1e3c72, #2a5298);
-            color: white;
             font-family: Arial, sans-serif;
+            color: white;
             text-align: center;
             overflow-x: hidden;
+            padding-top: 80px; /* Fix navbar overlap */
         }
 
+        /* Navbar Styling with Animation */
         .navbar {
             width: 100%;
             background: linear-gradient(to right, #142850, #27496d);
@@ -30,6 +33,17 @@
             left: 0;
             z-index: 1000;
             box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s ease-in-out, padding 0.3s ease-in-out, background 0.5s ease-in-out;
+            animation: slideIn 0.6s ease-out forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
         }
 
         .navbar a {
@@ -38,56 +52,77 @@
             padding: 15px 20px;
             font-size: 18px;
             transition: 0.3s;
+            position: relative;
+            font-weight: bold;
         }
 
         .navbar a:hover {
             background: rgba(255, 255, 255, 0.2);
             border-radius: 5px;
+            transform: scale(1.1);
+            transition: 0.3s;
         }
 
-        .container, .section {
+        /* Navbar Shrinks on Scroll */
+        .navbar.shrink {
+            padding: 10px 0;
+            background: linear-gradient(to right, #0f1e3d, #1c3b5a);
+        }
+
+        /* Smooth Underline Animation */
+        .navbar a::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background: yellow;
+            transition: all 0.3s ease-in-out;
+            transform: translateX(-50%);
+        }
+
+        .navbar a:hover::after {
+            width: 100%;
+        }
+
+        /* Flexbox for Side-by-Side Layout */
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+        }
+
+        .section {
             background: rgba(255, 255, 255, 0.1);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-            margin-top: 80px;
-            max-width: 800px;
+            width: 45%;
+            min-width: 300px;
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
 
+        /* Hover Effect */
+        .section:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease-in-out;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Fade-in Animation */
         .visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .video-container {
-            position: relative;
-            max-width: 500px;
-            margin: 20px auto;
-            border: 3px solid white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-        }
-
-        video, canvas {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .buttons {
-            margin-top: 15px;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-        }
-
-        .fade-in {
-            opacity: 1 !important;
-        }
-
+        /* Buttons Styling */
         button {
             border: none;
             padding: 10px 20px;
@@ -96,76 +131,116 @@
             cursor: pointer;
             transition: 0.3s;
             border-radius: 5px;
+            background: #ff9800;
         }
 
         button:hover {
             transform: scale(1.1);
+            background: #ff5722;
         }
-        #startBtn{
-            background: green;
-        }
-        #stopBtn{
-            background: red;
-        }
+        /* Mobile Responsiveness */
+@media (max-width: 768px) {
+    /* Adjust Navbar */
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #142850;
+        padding: 10px 0;
+    }
+
+    .menu.show {
+        display: flex;
+    }
+
+    .menu a {
+        padding: 10px;
+        font-size: 18px;
+        display: block;
+    }
+
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
+        font-size: 24px;
+        color: white;
+    }
+
+    /* Adjust Sections */
+    .content {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .section {
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    /* Adjust Buttons */
+    button {
+        width: 100%;
+        padding: 12px;
+        font-size: 18px;
+    }
+}
+
+
     </style>
 </head>
 <body>
+
     <div class="navbar">
-        <a href="#home">Home</a>
+        <a href="index.html">Home</a>
         <a href="#about">About Us</a>
-        <a href="#model">Model Usage</a>
+        <a href="modelusage.html">Model Usage</a>
     </div>
 
-    <div class="container" id="home">
-        <h2>🔍 AI Object Detection</h2>
-        <p>Using COCO-SSD Model & Distance Estimation to assist visually impaired individuals in real-time navigation.</p>
-        <div class="video-container">
-            <video id="video" autoplay></video>
-            <canvas id="canvas"></canvas>
+    <div class="content">
+        <div class="section">
+            <h2>1. Introduction</h2>
+            <p>Blind and visually impaired individuals face challenges in navigating their environment. Our system provides AI-powered assistance through real-time object detection.</p>
         </div>
-        <div class="buttons fade-in-section">
-            <button id="startBtn">▶ Start Detection</button>
-            <button id="stopBtn">⏹ Stop Detection</button>
+
+        <div class="section">
+            <h2>2. Project Description</h2>
+            <p>This project helps visually impaired users by identifying nearby objects using smartphone cameras. The system ensures safer navigation through auditory and haptic feedback.</p>
+        </div>
+
+        <div class="section">
+            <h2>3. Technologies Used</h2>
+            <p>• AI & ML for object detection and recognition.<br>• TensorFlow.js for in-browser deep learning.<br>• COCO-SSD for real-time object detection.<br>• WebRTC for real-time video feed.<br>• Flask for backend processing.</p>
+        </div>
+
+        <div class="section">
+            <h2>4. Features</h2>
+            <p>✅ Detects objects in real-time.<br>✅ Provides vibration feedback for close objects.<br>✅ Announces object positions.<br>✅ Allows voice commands for hands-free control.<br>✅ Interactive and accessible UI.</p>
+        </div>
+
+        <div class="section">
+            <h2>5. System Implementation</h2>
+            <h3>5.1 Object Detection Module</h3>
+            <p>The COCO-SSD model identifies objects and determines their location using TensorFlow.js. Distance estimation is used to provide appropriate feedback.</p>
+            <h3>5.2 Sensory Feedback Mechanisms</h3>
+            <p>• Audio Feedback: Announces detected objects through text-to-speech.<br>• Haptic Feedback: Vibrates when objects are too close.<br>• Visual Effects: Highlights objects for those with partial vision.</p>
+        </div>
+
+        <div class="section">
+            <h2>7. Conclusion</h2>
+            <p>The AI-Based Blind Assist System combines AI, computer vision, and smartphone technology to empower visually impaired individuals with enhanced mobility and independence.</p>
         </div>
     </div>
 
-    <div class="section">
-        <h2>1. Introduction</h2>
-        <p>Blind and visually impaired individuals face significant challenges in navigating their environment safely. Our system provides AI-powered assistance through real-time object detection.</p>
-    </div>
-
-    <div class="section">
-        <h2>2. Project Description</h2>
-        <p>This project helps visually impaired users by identifying nearby objects using smartphone cameras. The system ensures safer navigation through auditory and haptic feedback.</p>
-    </div>
-
-    <div class="section">
-        <h2>3. Technologies Used</h2>
-        <p>• AI & ML for object detection and recognition.<br>• TensorFlow.js for in-browser deep learning.<br>• COCO-SSD for real-time object detection.<br>• WebRTC for real-time video feed.<br>• Flask for backend processing.</p>
-    </div>
-
-    <div class="section">
-        <h2>4. Features</h2>
-        <p>✅ Detects objects in real-time.<br>✅ Provides vibration feedback for close objects.<br>✅ Announces object positions.<br>✅ Allows voice commands for hands-free control.<br>✅ Interactive and accessible UI.</p>
-    </div>
-
-    <div class="section">
-        <h2>5. System Implementation</h2>
-        <h3>5.1 Object Detection Module</h3>
-        <p>The COCO-SSD model identifies objects and determines their location using TensorFlow.js. Distance estimation is used to provide appropriate feedback.</p>
-        <h3>5.2 Sensory Feedback Mechanisms</h3>
-        <p>• Audio Feedback: Announces detected objects through text-to-speech.<br>• Haptic Feedback: Vibrates when objects are too close.<br>• Visual Effects: Highlights objects for those with partial vision.</p>
-    </div>
-
-    <div class="section">
-        <h2>7. Conclusion</h2>
-        <p>The AI-Based Blind Assist System combines AI, computer vision, and smartphone technology to empower visually impaired individuals with enhanced mobility and independence.</p>
-    </div>
-    
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            let fadeInElements = document.querySelectorAll(".section, .container");
-            let buttons = document.querySelector(".buttons");
+            let fadeInElements = document.querySelectorAll(".section");
 
             function checkScroll() {
                 fadeInElements.forEach(el => {
@@ -179,13 +254,20 @@
             window.addEventListener("scroll", checkScroll);
             checkScroll();
 
-            setTimeout(() => {
-                buttons.classList.add("fade-in");
-            }, 500);
+            // Navbar Shrink on Scroll
+            window.addEventListener("scroll", function() {
+                let navbar = document.querySelector(".navbar");
+                if (window.scrollY > 50) {
+                    navbar.classList.add("shrink");
+                } else {
+                    navbar.classList.remove("shrink");
+                }
+            });
         });
+        document.querySelector(".menu-toggle").addEventListener("click", function() {
+    document.querySelector(".menu").classList.toggle("show");
+});
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
-    <script src="script.js"></script>
+
 </body>
 </html>
