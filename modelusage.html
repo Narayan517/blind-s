@@ -19,7 +19,7 @@
             overflow-x: hidden;
         }
 
-        /* Navbar Styling with Animation */
+        /* Navbar Styling */
         .navbar {
             width: 100%;
             background: linear-gradient(to right, #142850, #27496d);
@@ -124,75 +124,84 @@
         button:hover {
             transform: scale(1.05);
         }
-        #startBtn{
-            background: rgb(27, 234, 27)
+        
+        #startBtn {
+            background: rgb(27, 234, 27);
         }
-        #stopBtn{
+
+        #stopBtn {
             background: rgb(239, 46, 46);
         }
 
         /* Mobile Responsiveness */
-@media (max-width: 768px) {
-    /* Navbar Adjustments */
-    .navbar {
-        flex-direction: column;
-        text-align: center;
-        padding: 10px;
-    }
+        @media (max-width: 768px) {
+            /* Navbar Adjustments */
+            .navbar {
+                flex-direction: column;
+                text-align: center;
+                padding: 10px;
+            }
 
-    .navbar a {
-        display: block;
-        padding: 12px;
-        font-size: 16px;
-    }
+            .navbar a {
+                display: block;
+                padding: 12px;
+                font-size: 16px;
+            }
 
-    /* Mobile Menu (Hamburger) */
-    .menu-toggle {
-        display: block;
-        font-size: 24px;
-        color: white;
-        cursor: pointer;
-        text-align: right;
-        padding: 10px;
-        position: absolute;
-        top: 10px;
-        right: 15px;
-    }
+            /* Mobile Menu (Hamburger) */
+            .menu-toggle {
+                display: block;
+                font-size: 24px;
+                color: white;
+                cursor: pointer;
+                text-align: right;
+                padding: 10px;
+                position: absolute;
+                top: 10px;
+                right: 15px;
+            }
 
-    .menu {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background: #142850;
-        position: absolute;
-        top: 50px;
-        left: 0;
-        z-index: 1001;
-        padding: 10px 0;
-    }
+            .menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: #142850;
+                position: absolute;
+                top: 50px;
+                left: 0;
+                z-index: 1001;
+                padding: 10px 0;
+            }
 
-    .menu.show {
-        display: flex;
-    }
+            .menu.show {
+                display: flex;
+            }
 
-    /* Adjust AI Detection Container */
-    .container {
-        width: 95%;
-        padding: 15px;
-    }
+            /* Adjust AI Detection Container */
+            .container {
+                width: 95%;
+                padding: 15px;
+            }
 
-    /* Video Container */
-    .video-container {
-        width: 100%;
-    }
+            /* Video Container */
+            .video-container {
+                width: 100%;
+            }
 
-    /* Buttons */
-    button {
-        width: 100%;
-        padding: 12px;
-        font-size: 16px;
-    }
-}
+            /* Buttons */
+            button {
+                width: 100%;
+                padding: 12px;
+                font-size: 16px;
+            }
+        }
+
+        /* Hide hamburger icon on larger screens */
+        @media (min-width: 769px) {
+            .menu-toggle {
+                display: none;
+            }
+        }
 
     </style>
 </head>
@@ -204,6 +213,7 @@
         <a href="index.html">Home</a>
         <a href="#about">About Us</a>
         <a href="modelusage.html">Model Usage</a>
+        <div class="menu-toggle">☰</div> <!-- Hamburger Icon (Hidden on larger screens) -->
     </div>
 
     <!-- AI Object Detection Section -->
@@ -231,19 +241,17 @@
         });
 
         document.addEventListener("DOMContentLoaded", function () {
-    var menuToggle = document.createElement("div");
-    menuToggle.classList.add("menu-toggle");
-    menuToggle.innerHTML = "☰";
-    document.querySelector(".navbar").prepend(menuToggle);
+            var menuToggle = document.querySelector(".menu-toggle");
+            var navbar = document.querySelector(".navbar");
 
-    menuToggle.addEventListener("click", function () {
-        document.querySelector(".navbar").classList.toggle("show");
-    });
-});
-
+            menuToggle.addEventListener("click", function () {
+                navbar.classList.toggle("show");
+            });
+        });
     </script>
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
-<script src="script.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -6,22 +6,21 @@
     <title>AI Object Detection for Blind Assistance</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        /* General Styles */
         body {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
             margin: 0;
             background: linear-gradient(to right, #1e3c72, #2a5298);
             font-family: Arial, sans-serif;
             color: white;
             text-align: center;
             overflow-x: hidden;
-            padding-top: 80px; /* Fix navbar overlap */
         }
 
-        /* Navbar Styling with Animation */
+        /* Navbar Styling */
         .navbar {
             width: 100%;
             background: linear-gradient(to right, #142850, #27496d);
@@ -37,13 +36,21 @@
             animation: slideIn 0.6s ease-out forwards;
         }
 
+        /* Push content below navbar */
+        .content {
+            margin-top: 80px; /* Ensures content starts below navbar */
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+        }
+
+        /* Navbar Animation */
         @keyframes slideIn {
-            from {
-                transform: translateY(-100%);
-            }
-            to {
-                transform: translateY(0);
-            }
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
         }
 
         .navbar a {
@@ -51,25 +58,18 @@
             text-decoration: none;
             padding: 15px 20px;
             font-size: 18px;
-            transition: 0.3s;
-            position: relative;
             font-weight: bold;
+            position: relative;
+            transition: 0.3s;
         }
 
         .navbar a:hover {
             background: rgba(255, 255, 255, 0.2);
             border-radius: 5px;
             transform: scale(1.1);
-            transition: 0.3s;
         }
 
-        /* Navbar Shrinks on Scroll */
-        .navbar.shrink {
-            padding: 10px 0;
-            background: linear-gradient(to right, #0f1e3d, #1c3b5a);
-        }
-
-        /* Smooth Underline Animation */
+        /* Underline Animation */
         .navbar a::after {
             content: "";
             position: absolute;
@@ -78,7 +78,7 @@
             width: 0;
             height: 3px;
             background: yellow;
-            transition: all 0.3s ease-in-out;
+            transition: width 0.3s ease-in-out;
             transform: translateX(-50%);
         }
 
@@ -86,16 +86,7 @@
             width: 100%;
         }
 
-        /* Flexbox for Side-by-Side Layout */
-        .content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            padding: 20px;
-            max-width: 1200px;
-        }
-
+        /* Content Boxes */
         .section {
             background: rgba(255, 255, 255, 0.1);
             padding: 20px;
@@ -105,15 +96,13 @@
             min-width: 300px;
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
         /* Hover Effect */
         .section:hover {
             transform: scale(1.05);
-            transition: transform 0.3s ease-in-out;
             background: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         }
 
         /* Fade-in Animation */
@@ -122,77 +111,75 @@
             transform: translateY(0);
         }
 
-        /* Buttons Styling */
+        /* Buttons */
         button {
             border: none;
             padding: 10px 20px;
             color: white;
             font-size: 16px;
             cursor: pointer;
-            transition: 0.3s;
             border-radius: 5px;
             background: #ff9800;
+            transition: 0.3s;
         }
 
         button:hover {
             transform: scale(1.1);
             background: #ff5722;
         }
+
         /* Mobile Responsiveness */
-@media (max-width: 768px) {
-    /* Adjust Navbar */
-    .navbar {
-        flex-direction: column;
-        text-align: center;
-        padding: 10px;
-    }
+        @media (max-width: 768px) {
+            /* Navbar Adjustments */
+            .navbar {
+                flex-direction: column;
+                text-align: center;
+                padding: 10px;
+            }
 
-    .menu {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background: #142850;
-        padding: 10px 0;
-    }
+            .menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: #142850;
+                padding: 10px 0;
+            }
 
-    .menu.show {
-        display: flex;
-    }
+            .menu.show {
+                display: flex;
+            }
 
-    .menu a {
-        padding: 10px;
-        font-size: 18px;
-        display: block;
-    }
+            .menu a {
+                padding: 10px;
+                font-size: 18px;
+                display: block;
+            }
 
-    .menu-toggle {
-        display: block;
-        cursor: pointer;
-        font-size: 24px;
-        color: white;
-    }
+            .menu-toggle {
+                display: block;
+                cursor: pointer;
+                font-size: 24px;
+                color: white;
+            }
 
-    /* Adjust Sections */
-    .content {
-        display: flex;
-        flex-direction: column;
-        padding: 10px;
-    }
+            /* Adjust Sections */
+            .content {
+                flex-direction: column;
+                margin-top: 90px; /* Adjusted for smaller screens */
+            }
 
-    .section {
-        padding: 15px;
-        font-size: 16px;
-    }
+            .section {
+                width: 90%;
+                padding: 15px;
+            }
 
-    /* Adjust Buttons */
-    button {
-        width: 100%;
-        padding: 12px;
-        font-size: 18px;
-    }
-}
-
-
+            /* Adjust Buttons */
+            button {
+                width: 100%;
+                padding: 12px;
+                font-size: 18px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -211,17 +198,17 @@
 
         <div class="section">
             <h2>2. Project Description</h2>
-            <p>This project helps visually impaired users by identifying nearby objects using smartphone cameras. The system ensures safer navigation through auditory and haptic feedback.</p>
+            <p>This project helps visually impaired users by identifying nearby objects using smartphone cameras.</p>
         </div>
 
         <div class="section">
             <h2>3. Technologies Used</h2>
-            <p>• AI & ML for object detection and recognition.<br>• TensorFlow.js for in-browser deep learning.<br>• COCO-SSD for real-time object detection.<br>• WebRTC for real-time video feed.<br>• Flask for backend processing.</p>
+            <p>• AI & ML for object detection.<br>• TensorFlow.js for in-browser deep learning.<br>• COCO-SSD for real-time object detection.</p>
         </div>
 
         <div class="section">
             <h2>4. Features</h2>
-            <p>✅ Detects objects in real-time.<br>✅ Provides vibration feedback for close objects.<br>✅ Announces object positions.<br>✅ Allows voice commands for hands-free control.<br>✅ Interactive and accessible UI.</p>
+            <p>✅ Detects objects in real-time.<br>✅ Provides vibration feedback for close objects.<br>✅ Announces object positions.</p>
         </div>
 
         <div class="section">
@@ -253,20 +240,7 @@
 
             window.addEventListener("scroll", checkScroll);
             checkScroll();
-
-            // Navbar Shrink on Scroll
-            window.addEventListener("scroll", function() {
-                let navbar = document.querySelector(".navbar");
-                if (window.scrollY > 50) {
-                    navbar.classList.add("shrink");
-                } else {
-                    navbar.classList.remove("shrink");
-                }
-            });
         });
-        document.querySelector(".menu-toggle").addEventListener("click", function() {
-    document.querySelector(".menu").classList.toggle("show");
-});
     </script>
 
 </body>
