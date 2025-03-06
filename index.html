@@ -43,7 +43,12 @@
             to { transform: translateY(0); }
         }
 
-        .navbar a {
+        .menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        .menu a {
             color: white;
             text-decoration: none;
             padding: 15px 20px;
@@ -53,14 +58,14 @@
             transition: 0.3s;
         }
 
-        .navbar a:hover {
+        .menu a:hover {
             background: rgba(255, 255, 255, 0.2);
             border-radius: 5px;
             transform: scale(1.1);
         }
 
         /* Underline Animation */
-        .navbar a::after {
+        .menu a::after {
             content: "";
             position: absolute;
             left: 50%;
@@ -72,13 +77,13 @@
             transform: translateX(-50%);
         }
 
-        .navbar a:hover::after {
+        .menu a:hover::after {
             width: 100%;
         }
 
         /* Push content below navbar */
         .content {
-            margin-top: 80px; /* Ensures content starts below navbar */
+            margin-top: 80px;
             padding: 20px;
             display: flex;
             flex-wrap: wrap;
@@ -112,10 +117,25 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
+        /* Hide hamburger menu on desktop */
+        .menu-toggle {
+            display: none;
+        }
+
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
             .navbar {
-                flex-direction: column;
+                justify-content: space-between;
+                padding: 10px 20px;
+            }
+
+            .menu-toggle {
+                display: block;
+                cursor: pointer;
+                font-size: 24px;
+                color: white;
+                background: none;
+                border: none;
                 padding: 10px;
             }
 
@@ -124,6 +144,9 @@
                 flex-direction: column;
                 width: 100%;
                 background: #142850;
+                position: absolute;
+                top: 60px;
+                left: 0;
                 padding: 10px 0;
                 text-align: center;
             }
@@ -136,19 +159,6 @@
                 padding: 10px;
                 font-size: 18px;
                 display: block;
-            }
-
-            .menu-toggle {
-                display: block;
-                cursor: pointer;
-                font-size: 24px;
-                color: white;
-                background: none;
-                border: none;
-                padding: 10px;
-                position: absolute;
-                right: 20px;
-                top: 15px;
             }
 
             .content {
@@ -166,7 +176,7 @@
 <body>
 
     <div class="navbar">
-       
+        <button class="menu-toggle">☰</button>
         <div class="menu">
             <a href="index.html">Home</a>
             <a href="#about">About Us</a>
