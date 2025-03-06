@@ -27,6 +27,7 @@
             padding: 15px 0;
             display: flex;
             justify-content: center;
+            align-items: center;
             position: fixed;
             top: 0;
             left: 0;
@@ -34,17 +35,6 @@
             box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
             transition: transform 0.5s ease-in-out, padding 0.3s ease-in-out, background 0.5s ease-in-out;
             animation: slideIn 0.6s ease-out forwards;
-        }
-
-        /* Push content below navbar */
-        .content {
-            margin-top: 80px; /* Ensures content starts below navbar */
-            padding: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            max-width: 1200px;
         }
 
         /* Navbar Animation */
@@ -86,6 +76,17 @@
             width: 100%;
         }
 
+        /* Push content below navbar */
+        .content {
+            margin-top: 80px; /* Ensures content starts below navbar */
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+        }
+
         /* Content Boxes */
         .section {
             background: rgba(255, 255, 255, 0.1);
@@ -95,8 +96,14 @@
             width: 45%;
             min-width: 300px;
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(30px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        /* Fade-in & Fade-out Animation */
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Hover Effect */
@@ -105,35 +112,10 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
-        /* Fade-in Animation */
-        .visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Buttons */
-        button {
-            border: none;
-            padding: 10px 20px;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-            background: #ff9800;
-            transition: 0.3s;
-        }
-
-        button:hover {
-            transform: scale(1.1);
-            background: #ff5722;
-        }
-
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
-            /* Navbar Adjustments */
             .navbar {
                 flex-direction: column;
-                text-align: center;
                 padding: 10px;
             }
 
@@ -143,6 +125,7 @@
                 width: 100%;
                 background: #142850;
                 padding: 10px 0;
+                text-align: center;
             }
 
             .menu.show {
@@ -160,24 +143,22 @@
                 cursor: pointer;
                 font-size: 24px;
                 color: white;
+                background: none;
+                border: none;
+                padding: 10px;
+                position: absolute;
+                right: 20px;
+                top: 15px;
             }
 
-            /* Adjust Sections */
             .content {
                 flex-direction: column;
-                margin-top: 90px; /* Adjusted for smaller screens */
+                margin-top: 100px; /* Adjusted for smaller screens */
             }
 
             .section {
                 width: 90%;
                 padding: 15px;
-            }
-
-            /* Adjust Buttons */
-            button {
-                width: 100%;
-                padding: 12px;
-                font-size: 18px;
             }
         }
     </style>
@@ -185,9 +166,12 @@
 <body>
 
     <div class="navbar">
-        <a href="index.html">Home</a>
-        <a href="#about">About Us</a>
-        <a href="modelusage.html">Model Usage</a>
+       
+        <div class="menu">
+            <a href="index.html">Home</a>
+            <a href="#about">About Us</a>
+            <a href="modelusage.html">Model Usage</a>
+        </div>
     </div>
 
     <div class="content">
@@ -226,20 +210,28 @@
     </div>
 
     <script>
+        // Fade-in & Fade-out Effect
         document.addEventListener("DOMContentLoaded", function() {
-            let fadeInElements = document.querySelectorAll(".section");
+            const sections = document.querySelectorAll(".section");
 
             function checkScroll() {
-                fadeInElements.forEach(el => {
-                    let rect = el.getBoundingClientRect();
-                    if (rect.top <= window.innerHeight - 100) {
-                        el.classList.add("visible");
+                sections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top < window.innerHeight * 0.8) {
+                        section.classList.add("visible");
+                    } else {
+                        section.classList.remove("visible");
                     }
                 });
             }
 
             window.addEventListener("scroll", checkScroll);
-            checkScroll();
+            checkScroll(); // Run on load
+        });
+
+        // Hamburger Menu Toggle
+        document.querySelector(".menu-toggle").addEventListener("click", function() {
+            document.querySelector(".menu").classList.toggle("show");
         });
     </script>
 
