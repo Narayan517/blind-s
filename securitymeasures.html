@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Object Detection for Blind Assistance</title>
+    <title>Security Measures - AI Object Detection for Blind Assistance</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         /* General Styles */
@@ -37,10 +37,19 @@
             animation: slideIn 0.6s ease-out forwards;
         }
 
-        /* Navbar Animation */
         @keyframes slideIn {
             from { transform: translateY(-100%); }
             to { transform: translateY(0); }
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: white;
+            background: none;
+            border: none;
+            padding: 10px;
         }
 
         .menu {
@@ -64,7 +73,6 @@
             transform: scale(1.1);
         }
 
-        /* Underline Animation */
         .menu a::after {
             content: "";
             position: absolute;
@@ -81,7 +89,6 @@
             width: 100%;
         }
 
-        /* Push content below navbar */
         .content {
             margin-top: 80px;
             padding: 20px;
@@ -92,7 +99,6 @@
             max-width: 1200px;
         }
 
-        /* Content Boxes */
         .section {
             background: rgba(255, 255, 255, 0.1);
             padding: 20px;
@@ -105,38 +111,19 @@
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
-        /* Fade-in & Fade-out Animation */
         .section.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Hover Effect */
         .section:hover {
             transform: scale(1.05);
             background: rgba(255, 255, 255, 0.2);
         }
 
-        /* Hide hamburger menu on desktop */
-        .menu-toggle {
-            display: none;
-        }
-
-        /* Mobile Responsiveness */
         @media (max-width: 768px) {
-            .navbar {
-                justify-content: space-between;
-                padding: 10px 20px;
-            }
-
             .menu-toggle {
                 display: block;
-                cursor: pointer;
-                font-size: 24px;
-                color: white;
-                background: none;
-                border: none;
-                padding: 10px;
             }
 
             .menu {
@@ -163,18 +150,15 @@
 
             .content {
                 flex-direction: column;
-                margin-top: 100px; /* Adjusted for smaller screens */
             }
 
             .section {
                 width: 90%;
-                padding: 15px;
             }
         }
     </style>
 </head>
 <body>
-
     <div class="navbar">
         <button class="menu-toggle">☰</button>
         <div class="menu">
@@ -185,42 +169,29 @@
     </div>
 
     <div class="content">
-        <div class="section">
-            <h2>1. Introduction</h2>
-            <p>Blind and visually impaired individuals face challenges in navigating their environment. Our system provides AI-powered assistance through real-time object detection.</p>
-        </div>
-
-        <div class="section">
-            <h2>2. Project Description</h2>
-            <p>This project helps visually impaired users by identifying nearby objects using smartphone cameras.</p>
-        </div>
-
-        <div class="section">
-            <h2>3. Technologies Used</h2>
-            <p>• AI & ML for object detection.<br>• TensorFlow.js for in-browser deep learning.<br>• COCO-SSD for real-time object detection.</p>
-        </div>
-
-        <div class="section">
-            <h2>4. Features</h2>
-            <p>✅ Detects objects in real-time.<br>✅ Provides vibration feedback for close objects.<br>✅ Announces object positions.</p>
-        </div>
-
-        <div class="section">
-            <h2>5. System Implementation</h2>
-            <h3>5.1 Object Detection Module</h3>
-            <p>The COCO-SSD model identifies objects and determines their location using TensorFlow.js. Distance estimation is used to provide appropriate feedback.</p>
-            <h3>5.2 Sensory Feedback Mechanisms</h3>
-            <p>• Audio Feedback: Announces detected objects through text-to-speech.<br>• Haptic Feedback: Vibrates when objects are too close.<br>• Visual Effects: Highlights objects for those with partial vision.</p>
-        </div>
-
-        <div class="section">
-            <h2>7. Conclusion</h2>
-            <p>The AI-Based Blind Assist System combines AI, computer vision, and smartphone technology to empower visually impaired individuals with enhanced mobility and independence.</p>
-        </div>
+    <div class="section">
+        <h2>1. Cross-Site Scripting (XSS) Prevention</h2>
+        <p><strong>Fix:</strong> Replaced <code>innerHTML</code> with <code>textContent</code> to prevent malicious script injection.</p>
+    </div>
+    <div class="section">
+        <h2>2. Secure Camera and Microphone Access</h2>
+        <p><strong>Fix:</strong> Camera permissions now require user action instead of auto-loading.</p>
+    </div>
+    <div class="section">
+        <h2>3. Clickjacking Protection</h2>
+        <p><strong>Fix:</strong> Added a Content Security Policy (CSP) to prevent embedding in iframes.We added frame-ancestors 'none' to block it.</p>
+    </div>
+    <div class="section">
+        <h2>4. Prevent Browser Caching of Sensitive Data</h2>
+        <p><strong>Fix:</strong> Implemented cache control headers to prevent storing sensitive data.</p>
+    </div>
+    <div class="section">
+        <h2>5. Content Security Policy (CSP) Implementation</h2>
+        <p><strong>Fix:</strong> Restricted JavaScript execution to scripts from the same origin.</p>
+    </div>
     </div>
 
     <script>
-        // Fade-in & Fade-out Effect
         document.addEventListener("DOMContentLoaded", function() {
             const sections = document.querySelectorAll(".section");
 
@@ -236,14 +207,12 @@
             }
 
             window.addEventListener("scroll", checkScroll);
-            checkScroll(); // Run on load
+            checkScroll();
         });
 
-        // Hamburger Menu Toggle
         document.querySelector(".menu-toggle").addEventListener("click", function() {
             document.querySelector(".menu").classList.toggle("show");
         });
     </script>
-
 </body>
 </html>
