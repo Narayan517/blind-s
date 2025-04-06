@@ -21,7 +21,8 @@ Alarm System: Rings if the user is dangerously close to an obstacle.
 🎨 Technology Stack
 Frontend: HTML, CSS, JavaScript
 
-Detection Mechanism: JavaScript 
+Detection Mechanism: JavaScript (Tensor.flow)
+COCO-SSD for realtime object detection
 
 
 📌 How to Use
