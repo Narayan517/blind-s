@@ -1,4 +1,5 @@
 👁️‍🗨️ Blind Assistant Web Application
+
 The Blind Assistant Web Application is designed to aid visually impaired users by detecting nearby objects and providing real-time alerts. 
 It enhances mobility and safety through audio feedback when objects are too close.
 
@@ -29,7 +30,7 @@ Detection Mechanism: JavaScript
 
 Clone the repository:
 
-git clone https://github.com/your-username/blind-assistant.git
+git clone https://narayan517.github.io/blind-s/.git
 
 cd blind-s
 Open index.html in a browser (Chrome, Firefox, Edge, etc.).
@@ -41,4 +42,21 @@ The project is hosted using GitHub Pages.
 
 Click the link below to access it online:
 
-🔗 Live Demo
+🔒 Security Considerations
+
+Currently, this project does not include advanced security measures such as authentication, data encryption, or protection against unauthorized access. Future improvements may include:
+
+User authentication (if needed).
+
+Better data handling & privacy protection.
+
+Secure audio & detection processing to prevent false alerts.
+
+🔹 Contributions Welcome: If you have suggestions or want to help improve security, feel free to create an issue or submit a pull request!
+
+
+🔗 Live Demo:
+
+https://narayan517.github.io/blind-s/
+
+
